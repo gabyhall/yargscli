@@ -17,8 +17,8 @@ const add = () => {
         movieList.push(entry);
         let stringMovieList = JSON.stringify(movieList.flat(1));
         fs.writeFileSync("./src/netflix.json", stringMovieList);
-        console.log("Movie was added to your list:");
         console.log(stringMovieList);
+        console.log("Movie was added to your movie list");
     }
 }
 
