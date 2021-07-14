@@ -17,8 +17,8 @@ const add = () => {
         movieList.push(entry);
         let stringMovieList = JSON.stringify(movieList.flat(1));
         fs.writeFileSync("./src/netflix.json", stringMovieList);
+        console.log("Movie was added to your list:");
         console.log(stringMovieList);
-        console.log("added to your movie list");
     }
 }
 
@@ -27,8 +27,8 @@ add();
 
 const list = () => {
   if (command === "list") {
+    console.log("Here is your movie list:");
     console.log(movieList);
-    console.log("here is your movie list");
   }
 }
 
@@ -46,7 +46,8 @@ const remove = () => {
     movieList[0].splice(deleteIndex, 1);
     let stringMovieList = JSON.stringify(movieList.flat(1));
     fs.writeFileSync("./src/netflix.json", stringMovieList);
-    console.log(movieList)
+    console.log("Movie removed from your list:");
+    console.log(movieList);
   }
 }
 
@@ -57,14 +58,15 @@ const update = () => {
     entry = {title: yargs.argv.movie, actor: yargs.argv.actor, status: "not watched"};
     let updateIndex;
     movieList[0].map((movie, index) => {
-      if (movie.title === entry.title) { //is erasing actor if not included in command - could just make sure to keep it in command?
+      if (movie.title === entry.title) { //is erasing actor if not included in command - make sure to keep it in command
         updateIndex = index;
       }
     });
     movieList[0].splice(updateIndex, 1, {title: yargs.argv.movie, actor: yargs.argv.actor, status: "watched"});
     let stringMovieList = JSON.stringify(movieList.flat(1));
     fs.writeFileSync("./src/netflix.json", stringMovieList);
-    console.log(movieList)
+    console.log("Movie status updated:")
+    console.log(movieList);
   }
 }
 
