@@ -13,7 +13,7 @@ try {
 
 const add = () => {
     if (command === "add") {
-        entry = {title: yargs.argv.movie, actor: yargs.argv.actor};
+        entry = {title: yargs.argv.movie, actor: yargs.argv.actor, status: "not watched"};
         movieList.push(entry);
         let stringMovieList = JSON.stringify(movieList.flat(1));
         fs.writeFileSync("./src/netflix.json", stringMovieList);
@@ -52,3 +52,20 @@ const remove = () => {
 
 remove();
 
+const update = () => {
+  if (command === "update") {
+    entry = {title: yargs.argv.movie, actor: yargs.argv.actor, status: "not watched"};
+    let updateIndex;
+    movieList[0].map((movie, index) => {
+      if (movie.title === entry.title) { //is erasing actor if not included in command - could just make sure to keep it in command?
+        updateIndex = index;
+      }
+    });
+    movieList[0].splice(updateIndex, 1, {title: yargs.argv.movie, actor: yargs.argv.actor, status: "watched"});
+    let stringMovieList = JSON.stringify(movieList.flat(1));
+    fs.writeFileSync("./src/netflix.json", stringMovieList);
+    console.log(movieList)
+  }
+}
+
+update();
