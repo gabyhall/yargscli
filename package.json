@@ -19,6 +19,8 @@
   "homepage": "https://github.com/gabyhall/yargscli#readme",
   "keywords": [],
   "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.0.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
